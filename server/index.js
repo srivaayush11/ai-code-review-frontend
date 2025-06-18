@@ -7,7 +7,14 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://ai-code-review-frontend-three.vercel.app",
+    ],
+  })
+);
 
 app.post("/api/v1/reviews", async (req, res) => {
   const code = req.body.code;

@@ -20,13 +20,16 @@ function App() {
   const handleGenerateReview = async (code: string) => {
     try {
       setState("generating");
-      const response = await fetch("http://localhost:3000/api/v1/reviews", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ code }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/v1/reviews`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ code }),
+        }
+      );
 
       const data = await response.json();
       setReview(data.review);
