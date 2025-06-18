@@ -10,11 +10,18 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "https://ai-code-review-frontend-three.vercel.app",
+      "http://localhost:5173",
+      "https://ai-code-review-frontend-pmuo.vercel.app",
     ],
   })
 );
+
+app.get("/", (req, res) => {
+  res.send({
+    activeStatus: true,
+    error: false,
+  });
+});
 
 app.post("/api/v1/reviews", async (req, res) => {
   const code = req.body.code;
